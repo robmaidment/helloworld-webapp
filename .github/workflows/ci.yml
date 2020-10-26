@@ -8,6 +8,14 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
+      - name: Prepare a version number
+        uses: paulhatch/semantic-version@v3
+        with:
+          branch: "master"
+          tag_prefix: "v"
+          major_pattern: "(MAJOR)"
+          minor_pattern: "(MINOR)"
+          format: "${major}.${minor}.${increment}"
       - name: Check out the repo
         uses: actions/checkout@v2
       - name: Set up Docker Buildx
